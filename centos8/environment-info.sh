@@ -1,3 +1,4 @@
+#!/bin/bash
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -15,26 +16,50 @@
 # specific language governing permissions and limitations
 # under the License.
 
-.PHONY: all centos6 centos7 centos8 latest
+set -e
 
-# Build docker tag based on provided info
-#
-# $1: tag_name
-# $2: directory_name
-define build_tag
-	docker build -t khos2ow/cloudstack-rpm-builder:$(1) $(2)
-endef
+EXTRA_LINE=""
 
-all: centos6 centos7 centos8 latest
+print_title() {
+    local version_label=""
+    if [[ "$1" = *":" ]]; then
+        version_label=""
+    else
+        version_label=" version:"
+    fi
+    echo -e "${EXTRA_LINE}\e[1;34m$1${version_label}\e[0m"
+}
 
-centos6:
-	$(call build_tag,centos6,centos6)
+print_title "system information:"
+cat /etc/*-release
 
-centos7:
-	$(call build_tag,centos7,centos7)
+EXTRA_LINE="\n"
 
-centos8:
-	$(call build_tag,centos8,centos8)
+print_title "git"
+git --version
 
-latest:
-	$(call build_tag,latest,centos8)
+print_title "java"
+java -version
+
+print_title "tomcat"
+tomcat version
+
+print_title "maven"
+mvn --version
+
+print_title "python"
+python --version
+
+print_title "python3"
+python3 --version
+
+print_title "createrepo"
+createrepo --version
+
+print_title "rpmbuild"
+rpmbuild --version
+
+print_title "genisoimage"
+genisoimage --version
+
+echo ""

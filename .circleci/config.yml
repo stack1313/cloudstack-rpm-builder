@@ -48,28 +48,40 @@ jobs:
       TAG: centos7
       PARAMS: --distribution centos7
 
+  centos8:
+    <<: *defaults
+    environment:
+      IMAGE: khos2ow/cloudstack-rpm-builder
+      TAG: centos8
+      PARAMS: --distribution centos8
+
   latest:
     <<: *defaults
     environment:
       IMAGE: khos2ow/cloudstack-rpm-builder
-      TAG: centos7
-      PARAMS: --distribution centos7
+      TAG: centos8
+      PARAMS: --distribution centos8
 
 workflows:
   version: 2
   build:
     jobs:
-    - centos6:
-        filters:
-          tags:
-            only: /v.*/
+    - centos6
+        # filters:
+        #   tags:
+        #     only: /v.*/
 
-    - centos7:
-        filters:
-          tags:
-            only: /v.*/
+    - centos7
+        # filters:
+        #   tags:
+        #     only: /v.*/
 
-    - latest:
-        filters:
-          tags:
-            only: /v.*/
+    - centos8
+        # filters:
+        #   tags:
+        #     only: /v.*/
+
+    - latest
+        # filters:
+        #   tags:
+        #     only: /v.*/

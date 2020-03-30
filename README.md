@@ -28,7 +28,8 @@ This will give portable, immutable and reproducable mechanism to build packages 
 
 ## Supported tags and respective `Dockerfile` links
 
-- [`latest`, `centos7` (centos7/Dockerfile)](https://github.com/khos2ow/cloudstack-rpm-builder/blob/master/centos7/Dockerfile)
+- [`latest`, `centos8` (centos8/Dockerfile)](https://github.com/khos2ow/cloudstack-rpm-builder/blob/master/centos8/Dockerfile)
+- [`centos7` (centos7/Dockerfile)](https://github.com/khos2ow/cloudstack-rpm-builder/blob/master/centos7/Dockerfile)
 - [`centos6` (centos6/Dockerfile)](https://github.com/khos2ow/cloudstack-rpm-builder/blob/master/centos6/Dockerfile)
 
 ## Packges installed in conatiner
@@ -94,7 +95,7 @@ Also you can build RPM packages of any remote repository without the need to man
 
 #### Build packages of remote repository
 
-Now let's assume we want to build packages of `HEAD` of `master` branch from https://github.com/apache/cloudstack repository, we build packages by mapping `/tmp` into `/mnt/build` in the container. The container will clone the repository (defined by `--git-remote` flag) and check out the REF (defined by `--git-ref` flag) in `/mnt/build/cloudstack` inside the container and can be accessed from `/tmp/cloudstack` from the host machine.
+Now let's assume we want to build packages of `HEAD` of `master` branch from [https://github.com/apache/cloudstack](https://github.com/apache/cloudstack) repository, we build packages by mapping `/tmp` into `/mnt/build` in the container. The container will clone the repository (defined by `--git-remote` flag) and check out the REF (defined by `--git-ref` flag) in `/mnt/build/cloudstack` inside the container and can be accessed from `/tmp/cloudstack` from the host machine.
 
     docker run \
         -v /tmp:/mnt/build \
