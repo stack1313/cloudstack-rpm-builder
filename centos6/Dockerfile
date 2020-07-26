@@ -49,7 +49,10 @@ RUN \
     yum install -y \
         apache-maven && \
     yum clean all && rm -rf /var/cache/yum && \
-    sed -i "s/%dist .el7$/%dist .el7.centos/g" /etc/rpm/macros.dist
+    sed -i "s/%dist .el7$/%dist .el7.centos/g" /etc/rpm/macros.dist && \    
+    git clone https://github.com/rhtyd/cloudstack-nonoss.git && \	    
+    cd cloudstack-nonoss && \
+    ./install-non-oss.sh
 
 ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0
 ENV CATALINA_HOME=/usr/share/tomcat6/
