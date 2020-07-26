@@ -50,6 +50,8 @@ RUN \
         apache-maven && \
     yum clean all && rm -rf /var/cache/yum && \
     sed -i "s/%dist .el7$/%dist .el7.centos/g" /etc/rpm/macros.dist
+    git clone https://github.com/rhtyd/cloudstack-nonoss.git \
+    ./cloudstack-nonoss/install-non-oss.sh
 
 ENV JAVA_HOME=/usr/lib/jvm/java-11
 RUN alternatives --set java $(readlink -f ${JAVA_HOME}/bin/java)
